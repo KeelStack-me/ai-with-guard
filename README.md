@@ -4,6 +4,10 @@
 [![GitHub stars](https://img.shields.io/github/stars/KeelStack-me/ai-with-guard)](https://github.com/KeelStack-me/ai-with-guard)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](./LICENSE)
 
+> **💡 Like this fork?**  
+> The guardrails themselves live in [`@keelstack/guard`](https://github.com/KeelStack-me/guard) – a lightweight, MIT-licensed package.  
+> ⭐ [Star the main repo](https://github.com/KeelStack-me/guard) to stay updated on new features, bug fixes, and production examples.
+
 **Duplicate tool calls cost money and cause errors. This fork adds idempotency, budgets, and approval gates using `@keelstack/guard`.**  
 You get the full power of the Vercel AI SDK plus production-grade guardrails.
 
