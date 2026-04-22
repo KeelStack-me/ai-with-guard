@@ -1,7 +1,7 @@
 import { createHash } from 'node:crypto';
 import { createRequire } from 'node:module';
 
-// Temporary loader shim for @keelstack/guard 0.1.0 export-map mismatch (index.mjs is missing).
+// TODO(keelstack-guard>=0.1.1): remove this shim once package exports include dist/index.mjs.
 const require = createRequire(import.meta.url);
 const { guard } = require('@keelstack/guard') as {
   guard: <T>(options: {

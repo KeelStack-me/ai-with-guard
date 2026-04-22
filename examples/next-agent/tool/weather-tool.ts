@@ -25,8 +25,10 @@ export const weatherTool = tool({
     yield { state: 'loading' as const };
 
     const toolName = 'weather';
-    const userId = process.env.GUARD_USER_ID ?? 'anonymous';
     const toolArgs = { city };
+    const configuredGuardUserId = process.env.GUARD_USER_ID;
+    const userId =
+      configuredGuardUserId ?? `anonymous:${createToolArgsHash(toolArgs)}`;
     const idempotencyKey = `tool:${toolName}:${userId}:${createToolArgsHash(toolArgs)}`;
 
     const weatherResult = await guard({
@@ -43,10 +45,10 @@ export const weatherTool = tool({
           weather,
         };
       },
-      ...(guardBudgetLimitUsd > 0
+      ...(guardBudgetLimitUsd > 0 && configuredGuardUserId
         ? {
             budget: {
-              id: userId,
+              id: configuredGuardUserId,
               limitUsd: guardBudgetLimitUsd,
               warnAt: [0.5, 0.8],
               onWarn: ({
@@ -75,7 +77,10 @@ export const weatherTool = tool({
         state: 'ready' as const,
         temperature: null,
         weather: null,
-        error: 'guardBlocked',
+        error:
+          weatherResult.status === 'blocked:budget'
+            ? 'budgetExceeded'
+            : 'riskPolicyViolation',
         guardStatus: weatherResult.status,
         fromCache: weatherResult.fromCache,
       };
