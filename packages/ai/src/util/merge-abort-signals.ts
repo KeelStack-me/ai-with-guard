@@ -17,9 +17,41 @@ export function mergeAbortSignals(
     signal instanceof AbortSignal ? signal : AbortSignal.timeout(signal),
   );
 
-  return validSignals.length === 0
-    ? undefined
-    : validSignals.length === 1
-      ? validSignals[0]
-      : AbortSignal.any(validSignals);
+  if (validSignals.length === 0) {
+    return undefined;
+  }
+
+  if (validSignals.length === 1) {
+    return validSignals[0];
+  }
+
+  const controller = new AbortController();
+
+  // Preserve input ordering when multiple signals are already aborted.
+  for (const signal of validSignals) {
+    if (signal.aborted) {
+      controller.abort(signal.reason);
+      return controller.signal;
+    }
+  }
+
+  const cleanupCallbacks: Array<() => void> = [];
+
+  const abortFromSignal = (signal: AbortSignal) => {
+    if (!controller.signal.aborted) {
+      controller.abort(signal.reason);
+    }
+
+    for (const cleanup of cleanupCallbacks) {
+      cleanup();
+    }
+  };
+
+  for (const signal of validSignals) {
+    const onAbort = () => abortFromSignal(signal);
+    signal.addEventListener('abort', onAbort, { once: true });
+    cleanupCallbacks.push(() => signal.removeEventListener('abort', onAbort));
+  }
+
+  return controller.signal;
 }
