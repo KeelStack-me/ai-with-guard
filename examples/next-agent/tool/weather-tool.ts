@@ -6,6 +6,11 @@ import { guard } from '../lib/keelstack-guard';
 const guardBudgetLimitUsd = Number(process.env.GUARD_BUDGET_LIMIT_USD ?? '0');
 const guardApprovalPolicy =
   process.env.GUARD_APPROVAL_POLICY === 'block' ? 'block' : 'warn';
+const guardRiskLevel =
+  process.env.GUARD_RISK_LEVEL === 'reversible' ||
+  process.env.GUARD_RISK_LEVEL === 'irreversible'
+    ? process.env.GUARD_RISK_LEVEL
+    : 'safe';
 
 function createToolArgsHash(args: unknown) {
   return createHash('sha256').update(JSON.stringify(args)).digest('hex');
@@ -60,7 +65,7 @@ export const weatherTool = tool({
           }
         : {}),
       risk: {
-        level: 'irreversible',
+        level: guardRiskLevel,
         policy: guardApprovalPolicy,
       },
     });

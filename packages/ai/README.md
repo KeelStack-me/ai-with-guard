@@ -75,6 +75,7 @@ In `examples/next-agent`, optional environment variables:
 
 - `GUARD_BUDGET_LIMIT_USD` – enable budget cap when set to a number > 0
 - `GUARD_APPROVAL_POLICY` – `warn` (default) or `block`
+- `GUARD_RISK_LEVEL` – `safe` (default), `reversible`, or `irreversible`
 
 ## SEO keywords
 
