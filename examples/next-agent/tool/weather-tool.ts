@@ -20,12 +20,12 @@ export const weatherTool = tool({
   description: 'Get the weather in a location',
   inputSchema: z.object({
     city: z.string(),
-    userId: z.string().default('anonymous'),
   }),
-  async *execute({ city, userId }: { city: string; userId: string }) {
+  async *execute({ city }: { city: string }) {
     yield { state: 'loading' as const };
 
     const toolName = 'weather';
+    const userId = process.env.GUARD_USER_ID ?? 'anonymous';
     const toolArgs = { city };
     const idempotencyKey = `tool:${toolName}:${userId}:${createToolArgsHash(toolArgs)}`;
 
@@ -73,8 +73,9 @@ export const weatherTool = tool({
     if (!weatherResult.value) {
       yield {
         state: 'ready' as const,
-        temperature: 0,
-        weather: 'blocked',
+        temperature: null,
+        weather: null,
+        error: 'guard_blocked',
         guardStatus: weatherResult.status,
         fromCache: weatherResult.fromCache,
       };

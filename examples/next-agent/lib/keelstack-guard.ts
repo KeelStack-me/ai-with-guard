@@ -1,5 +1,6 @@
 import { createRequire } from 'node:module';
 
+// Temporary loader shim for @keelstack/guard 0.1.0 export-map mismatch (index.mjs is missing).
 const require = createRequire(import.meta.url);
 const guardModule = require('@keelstack/guard') as {
   guard: <T>(options: {

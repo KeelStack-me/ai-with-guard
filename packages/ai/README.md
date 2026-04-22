@@ -1,7 +1,7 @@
 # AI SDK + KeelStack Guard – Production-ready duplicate prevention
 
 [![npm version](https://img.shields.io/npm/v/@keelstack/guard)](https://www.npmjs.com/package/@keelstack/guard)
-[![GitHub stars](https://img.shields.io/badge/stars-placeholder-lightgrey)](https://github.com/KeelStack-me/ai-with-guard)
+[![GitHub stars](https://img.shields.io/github/stars/KeelStack-me/ai-with-guard)](https://github.com/KeelStack-me/ai-with-guard)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](./LICENSE)
 
 Duplicate tool calls cost money and cause errors. This fork adds idempotency, budgets, and approval gates using `@keelstack/guard`.
