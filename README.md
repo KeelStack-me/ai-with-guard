@@ -331,3 +331,13 @@ The AI SDK community can be found on the [Vercel Community](https://community.ve
 ## License
 
 Apache License 2.0 – see [LICENSE](./LICENSE) for details.
+
+## Attribution
+
+This repository is a fork of [vercel/ai](https://github.com/vercel/ai). All credit to the original authors. Guard integration by Siddhant Jain.
+
+## Contributing to this fork
+
+- **Issues related to original framework behavior:** open at [vercel/ai issues](https://github.com/vercel/ai/issues)
+- **Issues related to guard integration in this fork:** open at [KeelStack-me/ai-with-guard issues](https://github.com/KeelStack-me/ai-with-guard/issues)
+- PRs are welcome for improved guard integrations, examples, and production hardening.
