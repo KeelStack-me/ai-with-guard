@@ -1,5 +1,5 @@
-import { UIToolInvocation, tool } from 'ai';
 import { createHash } from 'node:crypto';
+import { UIToolInvocation, tool } from 'ai';
 import { z } from 'zod';
 import { guard } from '../lib/keelstack-guard';
 
@@ -75,7 +75,7 @@ export const weatherTool = tool({
         state: 'ready' as const,
         temperature: null,
         weather: null,
-        error: 'guard_blocked',
+        error: 'guardBlocked',
         guardStatus: weatherResult.status,
         fromCache: weatherResult.fromCache,
       };
