@@ -354,6 +354,9 @@ importers:
       '@google/generative-ai':
         specifier: 0.21.0
         version: 0.21.0
+      '@keelstack/guard':
+        specifier: 0.1.0
+        version: 0.1.0(ioredis@5.4.1)
       '@langfuse/otel':
         specifier: ^4.5.0
         version: 4.6.1(@opentelemetry/api@1.9.1)(@opentelemetry/core@2.5.1(@opentelemetry/api@1.9.1))(@opentelemetry/exporter-trace-otlp-http@0.211.0(@opentelemetry/api@1.9.1))(@opentelemetry/sdk-trace-base@2.5.1(@opentelemetry/api@1.9.1))
@@ -740,6 +743,9 @@ importers:
       '@ai-sdk/react':
         specifier: 4.0.0-beta.111
         version: link:../../packages/react
+      '@keelstack/guard':
+        specifier: 0.1.0
+        version: 0.1.0(ioredis@5.4.1)
       '@vercel/blob':
         specifier: ^0.26.0
         version: 0.26.0
@@ -6957,6 +6963,15 @@ packages:
     engines: {node: '>=10.0'}
     peerDependencies:
       tslib: '2'
+
+  '@keelstack/guard@0.1.0':
+    resolution: {integrity: sha512-aizZXC07oTlgizkT3y5qCkiokBPrJ1KIxYkTxD9EkHe1eNTuobTcw0ArAt49RO//lXKDGzoRTrh/x8pxKJSOtg==}
+    engines: {node: '>=20.0.0'}
+    peerDependencies:
+      ioredis: '>=5.0.0'
+    peerDependenciesMeta:
+      ioredis:
+        optional: true
 
   '@keyv/serialize@1.1.1':
     resolution: {integrity: sha512-dXn3FZhPv0US+7dtJsIi2R+c7qWYiReoEh5zUntWCf4oSpMNib8FDhSoed6m3QyZdx5hK7iLFkYk3rNxwt8vTA==}
@@ -25065,6 +25080,10 @@ snapshots:
   '@jsonjoy.com/util@1.6.0(tslib@2.8.1)':
     dependencies:
       tslib: 2.8.1
+
+  '@keelstack/guard@0.1.0(ioredis@5.4.1)':
+    optionalDependencies:
+      ioredis: 5.4.1
 
   '@keyv/serialize@1.1.1': {}
 
